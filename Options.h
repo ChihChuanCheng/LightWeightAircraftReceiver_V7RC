@@ -1,3 +1,3 @@
 #pragma once
 
-//#define __LOG__
+#define __LOG__
