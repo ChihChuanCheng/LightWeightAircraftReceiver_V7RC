@@ -1,8 +1,7 @@
 /*
- * Copyright (c) 2018, circuits4you.com
+ * Copyright (c) 2021,
  * All rights reserved.
- * Create a TCP Server on ESP8266 NodeMCU. 
- * TCP Socket Server Send Receive Demo
+ * Implement a light-weight aircraft receiver on ESP8266 NodeMCU based on UDP protocol. 
 */
 
 #include <ESP8266WiFi.h>
