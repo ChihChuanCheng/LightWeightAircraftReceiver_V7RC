@@ -77,18 +77,21 @@ void loop()
       Serial.println(len);
 #endif /* __LOG__ */
 
+      /* reply received data to transmitter for debugging */
       Udp.beginPacket(Udp.remoteIP(),Udp.remotePort());
       Udp.printf("received: ");
       Udp.printf(packetBuffer);
       Udp.printf("\r\n");
       Udp.endPacket();
-  
+
+      /* convert received data to string */
       if (len > 0) {
         for (int i = 0; i < len; i++){
           rxData+=packetBuffer[i];
         }
       }
-  
+
+      /* parse received string to V7RC commands */
       if(packetBuffer[1]=='R'){
         for(int i=0;i<4;i++){
           data = rxData.substring(i*4+3, i*4+7); 
@@ -107,6 +110,7 @@ void loop()
       Serial.println();
 #endif /* __LOG__ */
 
+      /* mapping V7RC commands to receiver throttle/rudder commands */
       rudder = map(datafromV7RC[0], 1000, 2000, 0, 180);
       throttle = map(datafromV7RC[1], 1000, 2000, 0, 255);
       motor_control(rudder, throttle);

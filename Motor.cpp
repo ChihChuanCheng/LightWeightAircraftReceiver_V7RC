@@ -10,13 +10,12 @@ const uint8_t full_thr = 255;
 Servo servoRudder;
 
 void init_motor() {
-  pinMode(THROTTLE, OUTPUT);
-
   /* initialize servo */
   servoRudder.attach(RUDDER);
   servoRudder.write(90);
 
   /* initialize throttle */
+  pinMode(THROTTLE, OUTPUT);
   analogWrite(THROTTLE, 0);
   
   /* set a new input range for throttle */
@@ -30,6 +29,8 @@ void motor_control(uint8_t rudder, uint8_t throttle) {
   Serial.print(" throttle: ");
   Serial.println(throttle);
 #endif /* __LOG__ */
+
+  /* commmand rudder and motor */
   servoRudder.write(rudder);
   analogWrite(THROTTLE, throttle);
 }
